@@ -64,19 +64,69 @@ let activeDescEl = document.getElementById("active-description");
 let thumContainerEl = document.getElementById("thumb-container");
 let activeIndex = 0;
 let thumbnails = [];
+const upBtn = document.getElementById("btn-su");
+const dwnBtn = document.getElementById("btn-giu");
+const playBtn = document.getElementById("btn-play");
+const reverseBtn = document.getElementById("btn-reverse");
+let isPlaying = false;
+let isReverse = false;
+const stopTwo = "";
+const stopOne = "";
+
+
 
 activeImgEl.src = images[activeIndex].image;
 activeTitleEl.innerText = images[activeIndex].title;
 activeDescEl.innerText = images[activeIndex].text;
 
-images.forEach((elementoSingolo) => {
-    thumbnails.push(createThumbnail(elementoSingolo.image));
+images.forEach((elementoSingolo, index) => {
+    thumbnails.push(createThumbnail(elementoSingolo.image, index));
     
 })
 
 thumbnails[activeIndex].classList.add("thumb-active");
 
 
+reverseBtn.addEventListener("click", function(){
+    if(isReverse){
+        reverseBtn.classList.remove("btn-active")
+        isReverse = false;
+    } else{
+        reverseBtn.classList.add("btn-active");
+        isReverse = true;
+    }
+})
+
+playBtn.addEventListener("click", function(){
+    if(!isPlaying){
+        if(isReverse){
+            stopOne = setInterval(funzioneBtnSu, 3000);
+            isPlaying = true;
+            playBtn.classList.add("btn-active")
+        }else {
+            stopTwo = setInterval(funzioneBtnGiu, 3000);
+            isPlaying = true;
+            playBtn.classList.add("btn-active");
+        }
+    } else{
+        clearInterval(stopOne);
+        clearInterval(stopTwo);
+        playBtn.classList.remove("btn-active");
+        isPlaying = false;
+    }
+})
+
+
+
+
+
+upBtn.addEventListener("click", function(){
+   funzioneBtnSu();
+})
+
+dwnBtn.addEventListener("click", function(){
+    funzioneBtnGiu();
+})
 
 
 
@@ -87,8 +137,9 @@ thumbnails[activeIndex].classList.add("thumb-active");
 
 
 /*funzioni*/
-function createThumbnail(imgSrc){
+function createThumbnail(imgSrc, index){
     let newThumbnail = document.createElement("div");
+    newThumbnail.setAttribute("indice", index);
     let newImg = document.createElement("img");
     thumContainerEl.append(newThumbnail);
     newThumbnail.append(newImg);
@@ -101,16 +152,45 @@ function createThumbnail(imgSrc){
             elementoSingolo.classList.remove("thumb-active");
         })
         newThumbnail.classList.add("thumb-active");
+        activeIndex = newThumbnail.getAttribute("indice");
         activeImgEl.src = images[activeIndex].image;
         activeTitleEl.innerText = images[activeIndex].title;
         activeDescEl.innerText = images[activeIndex].text;
 
-
-        
-        
     })
-    console.log(newThumbnail);
-    console.log(newImg);
+    
     return newThumbnail;
 
+}
+
+function funzioneBtnSu(){
+    thumbnails[activeIndex].classList.remove("thumb-active");
+    if(activeIndex == 0){
+        activeIndex = images.length - 1;
+        activeImgEl.src = images[activeIndex].image;
+        activeTitleEl.innerText = images[activeIndex].title;
+        activeDescEl.innerText = images[activeIndex].text;
+    } else{
+        activeIndex--;
+        activeImgEl.src = images[activeIndex].image;
+        activeTitleEl.innerText = images[activeIndex].title;
+        activeDescEl.innerText = images[activeIndex].text;
+    }
+    thumbnails[activeIndex].classList.add("thumb-active");
+}
+
+function funzioneBtnGiu(){
+    thumbnails[activeIndex].classList.remove("thumb-active");
+    if(activeIndex == images.length -1){
+        activeIndex = 0;
+        activeImgEl.src = images[activeIndex].image;
+        activeTitleEl.innerText = images[activeIndex].title;
+        activeDescEl.innerText = images[activeIndex].text;
+    } else{
+        activeIndex++;
+        activeImgEl.src = images[activeIndex].image;
+        activeTitleEl.innerText = images[activeIndex].title;
+        activeDescEl.innerText = images[activeIndex].text;
+    }
+    thumbnails[activeIndex].classList.add("thumb-active");
 }

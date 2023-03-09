@@ -16,6 +16,9 @@
     padding: 2em 0;
 }
 
+
+/*Display degli oggetti*/
+
 .img-display{
     display: flex;
     flex-direction: row;
@@ -47,10 +50,80 @@
     color: white;
 }
 
+
+
+
+
+/*thumbnail laterale*/
 .thumbnails-container{
     display: flex;
     flex-direction: column;
     background-color: black;
     width: 20%;
     height: 600px;
+    position:relative;
+}
+
+.thumb-img{
+    display: flex;
+    align-items: center;
+    height: 20%;
+    overflow: hidden;
+    opacity: 0.4;
+}
+
+
+.thumb-img:hover{
+    opacity: 1;
+}
+
+.thumb-active{
+    border: 1px solid lightgrey;
+    opacity: 1;
+}
+
+.btn-arrow{
+    border-radius: 50%;
+    padding: 5px 10px;
+    border: none;
+    background-color: grey;
+    z-index: 2;
+} 
+
+.btn-top-display{
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    opacity: 0.7;
+}
+
+.btn-bot-display{
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    opacity: 0.7;
+}
+
+.btn-top-display:hover,
+.btn-bot-display:hover{
+    opacity: 1;
+    color:white;
+}
+/*console pulsanti*/
+
+
+
+
+.my-btn-style{
+    background-color: dodgerblue;
+    color: white;
+    margin: 10px;
+    padding: 5px 15px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.btn-active{
+    border: 2px solid yellow;
+    color: yellow;
 }

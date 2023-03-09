@@ -20,18 +20,22 @@
         <h1>Array Object Carousel</h1>
         <div class="img-display">
             <div class="img-container">
-                <img src="img/01.webp" alt="img" class="my-img">
+                <img src="" alt="img" class="my-img" id="active-img">
                 <div class="img-description">
-                    <h2 id="active-title">title</h2>
-                    <span id="active-description">description description description</span>
+                    <h2 id="active-title"></h2>
+                    <span id="active-description"></span>
                 </div>
             </div>
-            <div class="thumbnails-container">
+            <div class="thumbnails-container" id="thumb-container">
+                
+                <button id="btn-su" class="btn-arrow btn-top-display"><i class="fa-solid fa-arrow-up"></i></button>
+                <button id="btn-giu" class="btn-arrow btn-bot-display"><i class="fa-solid fa-arrow-down"></i></button>
                 
             </div>
         </div>
         <div class="btn-console">
-
+            <button id="btn-play" class="my-btn-style">Autoplay/Stop</button>
+            <button id="btn-reverse" class="my-btn-style">Reverse</button>
         </div>
     </div>
     

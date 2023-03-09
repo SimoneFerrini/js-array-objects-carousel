@@ -70,8 +70,10 @@ const playBtn = document.getElementById("btn-play");
 const reverseBtn = document.getElementById("btn-reverse");
 let isPlaying = false;
 let isReverse = false;
-const stopTwo = "";
-const stopOne = "";
+let stopOne ;
+let stopTwo ;
+
+
 
 
 

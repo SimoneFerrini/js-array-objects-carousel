@@ -74,7 +74,7 @@ images.forEach((elementoSingolo) => {
     
 })
 
-thumbnails[0].classList.add("thumb-active");
+thumbnails[activeIndex].classList.add("thumb-active");
 
 
 
@@ -101,6 +101,10 @@ function createThumbnail(imgSrc){
             elementoSingolo.classList.remove("thumb-active");
         })
         newThumbnail.classList.add("thumb-active");
+        activeImgEl.src = images[activeIndex].image;
+        activeTitleEl.innerText = images[activeIndex].title;
+        activeDescEl.innerText = images[activeIndex].text;
+
 
         
         
